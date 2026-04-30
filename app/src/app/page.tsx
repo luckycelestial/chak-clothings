@@ -73,10 +73,10 @@ export default function Home() {
           marginBottom: '40px'
         }}>
           {[
-            { id: 101, name: "New Arrival 01", price: "₹1,899", image: "/new_arrivals/arrival-1.jpeg" },
-            { id: 102, name: "New Arrival 02", price: "₹2,199", image: "/new_arrivals/arrival-2.jpeg" },
-            { id: 103, name: "New Arrival 03", price: "₹1,699", image: "/new_arrivals/arrival-3.jpeg" },
-            { id: 104, name: "New Arrival 04", price: "₹1,999", image: "/new_arrivals/arrival-4.jpeg" }
+            { id: 101, name: "New Arrival 01", price: "₹689", image: "/new_arrivals/arrival-1.jpeg" },
+            { id: 102, name: "New Arrival 02", price: "₹689", image: "/new_arrivals/arrival-2.jpeg" },
+            { id: 103, name: "New Arrival 03", price: "₹689", image: "/new_arrivals/arrival-3.jpeg" },
+            { id: 104, name: "New Arrival 04", price: "₹689", image: "/new_arrivals/arrival-4.jpeg" }
           ].map((item) => (
             <Link key={item.id} href={`/products/${item.id}`} style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
                <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
