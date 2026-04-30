@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, KeyboardEvent } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -10,19 +10,18 @@ export default function Navigation() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      setIsSearchOpen(false);
+      router.push(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+    }
+  };
+
   const isActive = (path: string) => {
     if (path === "/" && pathname === "/") return true;
     if (path !== "/" && pathname.startsWith(path)) return true;
     return false;
-  };
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim() && router) {
-      router.push(`/products?q=${encodeURIComponent(searchQuery.trim())}`);
-      setIsSearchOpen(false);
-      setSearchQuery("");
-    }
   };
 
   return (
@@ -56,7 +55,7 @@ export default function Navigation() {
           zIndex: 1001,
           animation: 'slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
         }}>
-          <form onSubmit={handleSearch} style={{
+          <div style={{
             position: 'relative',
             background: 'white',
             borderRadius: '99px',
@@ -70,6 +69,7 @@ export default function Navigation() {
               autoFocus
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
               style={{
                 width: '100%',
                 padding: '16px 56px 16px 24px',
@@ -82,7 +82,7 @@ export default function Navigation() {
               }}
             />
             <button 
-              type="submit"
+              onClick={() => setIsSearchOpen(false)}
               style={{
                 position: 'absolute',
                 right: '12px',
@@ -100,9 +100,9 @@ export default function Navigation() {
                 cursor: 'pointer'
               }}
             >
-              <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>search</span>
+              <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>close</span>
             </button>
-          </form>
+          </div>
         </div>
       )}
 

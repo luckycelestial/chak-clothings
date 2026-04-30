@@ -14,148 +14,124 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="animate-fade-in">
-      {/* Hero Section */}
-      {/* Hero Section */}
+    <div className="animate-fade-in" style={{ paddingTop: '100px' }}>
+      {/* Brand Hero - Centered Logo */}
       <section style={{ 
         display: 'flex', 
-        flexDirection: 'column',
+        flexDirection: 'column', 
         alignItems: 'center', 
-        position: 'relative',
-        background: '#000', // Black background to match the logo image in the screenshot
-        width: '100%'
+        width: '100%',
+        background: 'white'
       }}>
-        <div style={{ width: '100%', maxWidth: '600px' }}>
+        <div style={{ width: '100%' }}>
           <img 
             src="/Chak_logo.jpg" 
             alt="CHAK Logo" 
             style={{ width: '100%', height: 'auto', display: 'block' }} 
           />
         </div>
-        <div style={{ padding: '20px 24px 60px', textAlign: 'center' }}>
-          <Link href="/products" className="btn-primary" style={{ textDecoration: 'none', borderRadius: '24px', padding: '12px 40px', fontSize: '16px', fontWeight: 600 }}>Explore Collections</Link>
-        </div>
-      </section>
 
-      {/* Featured Collections Bento Grid */}
-      <section className="container" style={{ padding: isMobile ? '40px 16px' : '80px 20px' }}>
+        {/* Explore Collections Button in its own Black Box */}
         <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(12, 1fr)', 
-          gap: isMobile ? '12px' : '24px'
+          width: '100%', 
+          background: '#000', 
+          padding: isMobile ? '48px 24px' : '64px 24px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
         }}>
-          {/* T-Shirts */}
-          <div style={{ 
-            gridColumn: isMobile ? 'span 1' : 'span 8', 
-            borderRadius: 'var(--radius-lg)', 
-            overflow: 'hidden', 
-            background: 'var(--ivory-white)',
-            border: '1px solid var(--border-light)',
-            position: 'relative',
-            cursor: 'pointer'
+          <Link href="/products" className="btn-primary" style={{ 
+            textDecoration: 'none', 
+            borderRadius: '24px', 
+            padding: isMobile ? '14px 48px' : '16px 64px', 
+            fontSize: isMobile ? '16px' : '18px', 
+            fontWeight: 600,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
           }}>
-            <div style={{ position: 'relative', aspectRatio: isMobile ? '1/1' : '16/9', overflow: 'hidden' }}>
-              <img 
-                src="/tshirt.png" 
-                alt="T-Shirts" 
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }}></div>
-              <div style={{ position: 'absolute', bottom: 0, left: 0, padding: isMobile ? '12px' : '40px', color: 'white' }}>
-                <span className="text-caption" style={{ textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold-luxury)', marginBottom: '4px', display: 'block', fontWeight: 600, fontSize: '10px' }}>Trending</span>
-                <h3 className="text-h3" style={{ fontSize: isMobile ? '14px' : '24px' }}>Premium T-Shirts</h3>
-              </div>
-            </div>
-          </div>
-
-          {/* Shirts */}
-          <div style={{ 
-            gridColumn: isMobile ? 'span 1' : 'span 4', 
-            borderRadius: 'var(--radius-lg)', 
-            overflow: 'hidden', 
-            background: 'var(--ivory-white)',
-            border: '1px solid var(--border-light)',
-            position: 'relative',
-            cursor: 'pointer'
-          }}>
-            <div style={{ position: 'relative', height: '100%', minHeight: isMobile ? '150px' : '300px' }}>
-              <img 
-                src="/shirt.png" 
-                alt="Shirts" 
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)' }}></div>
-              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: 'white', width: '100%', padding: '0 12px' }}>
-                <h3 className="text-h3" style={{ marginBottom: '4px', fontSize: isMobile ? '14px' : '24px' }}>Premium Shirts</h3>
-                <p className="text-caption" style={{ textTransform: 'uppercase', letterSpacing: '0.1em', borderBottom: '2px solid var(--gold-luxury)', display: 'inline-block', paddingBottom: '2px', fontWeight: 600, fontSize: '10px' }}>Shop Now</p>
-              </div>
-            </div>
-          </div>
+            Explore Collections
+          </Link>
         </div>
       </section>
 
-      {/* Pants Grid */}
-      <section className="container" style={{ padding: isMobile ? '0 16px 40px' : '0 20px 80px' }}>
+      {/* New Arrivals Section */}
+      <section className="container" style={{ padding: '20px 20px 40px', background: 'white' }}>
+        <h2 className="text-h2" style={{ marginBottom: '24px', fontSize: isMobile ? '22px' : '32px' }}>New Arrivals</h2>
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', 
-          gap: isMobile ? '12px' : '24px'
+          gap: isMobile ? '16px' : '32px' 
         }}>
-          {[
-            { title: "Cotton Pants", img: "/pants.png" },
-            { title: "Chinos", img: "/pants.png" },
-          ].map((item, idx) => (
-            <div key={idx} style={{ 
-              borderRadius: 'var(--radius-lg)', 
-              overflow: 'hidden', 
-              background: 'var(--ivory-white)',
-              border: '1px solid var(--border-light)',
-              cursor: 'pointer'
-            }}>
-              <div style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
-                <img src={item.img} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <div style={{ padding: '12px' }}>
-                <h4 className="text-h4" style={{ fontSize: '14px' }}>{item.title}</h4>
-                <p className="text-caption" style={{ color: 'var(--slate-gray)' }}>Explore Details</p>
-              </div>
-            </div>
-          ))}
+          <div style={{ cursor: 'pointer' }}>
+             <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
+                <img src="/tshirt.png" alt="Black T-Shirt" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+             </div>
+             <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>Premium Black T-Shirt</p>
+             <p className="text-body-sm" style={{ opacity: 0.7 }}>₹1,499</p>
+          </div>
+          <div style={{ cursor: 'pointer' }}>
+             <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
+                <img src="/shirt.png" alt="White Shirt" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+             </div>
+             <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>Crisp White Shirt</p>
+             <p className="text-body-sm" style={{ opacity: 0.7 }}>₹2,499</p>
+          </div>
+          <div style={{ cursor: 'pointer' }}>
+             <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
+                <img src="/pants.png" alt="Chinos" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+             </div>
+             <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>Slim Fit Chinos</p>
+             <p className="text-body-sm" style={{ opacity: 0.7 }}>₹3,299</p>
+          </div>
+          <div style={{ cursor: 'pointer' }}>
+             <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
+                <img src="/tshirt.png" alt="Classic Tee" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+             </div>
+             <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>Classic Crew Tee</p>
+             <p className="text-body-sm" style={{ opacity: 0.7 }}>₹1,299</p>
+          </div>
         </div>
       </section>
 
-      {/* Value Propositions - Horizontal Scroll */}
-      <section style={{ background: 'var(--surface-container)', padding: '40px 0' }}>
-        <div className="container">
-          <div style={{ 
-            display: 'flex', 
-            gap: '12px', 
-            overflowX: 'auto', 
-            padding: '0 16px 16px',
-            scrollSnapType: 'x mandatory',
-            msOverflowStyle: 'none',
-            scrollbarWidth: 'none',
-            WebkitOverflowScrolling: 'touch'
-          }}>
-            {[
-              { icon: "workspace_premium", title: "Premium T-Shirts" },
-              { icon: "eco", title: "Pure Cotton" },
-              { icon: "local_shipping", title: "Pan-India Delivery" }
-            ].map((value, index) => (
-              <div key={index} style={{ 
-                flex: '0 0 160px',
-                scrollSnapAlign: 'start',
-                padding: '20px',
-                background: 'white',
-                borderRadius: '16px',
-                textAlign: 'center',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-              }}>
-                <span className="material-symbols-outlined" style={{ fontSize: '28px', color: 'var(--brand-gold)', marginBottom: '8px' }}>{value.icon}</span>
-                <h4 className="text-h4" style={{ fontSize: '12px' }}>{value.title}</h4>
-              </div>
-            ))}
-          </div>
+      {/* Value Propositions - Auto Scrolling Marquee */}
+      <section style={{ background: 'var(--surface-container)', padding: '60px 0', overflow: 'hidden' }}>
+        <div className="marquee-container">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} style={{ display: 'flex', gap: '20px' }}>
+              {[
+                { icon: "workspace_premium", title: "Premium T-Shirts", desc: "Long lasting craftsmanship" },
+                { icon: "eco", title: "Pure Cotton", desc: "Sourced from Tiruppur" },
+                { icon: "local_shipping", title: "Pan-India Delivery", desc: "Fast & Secure shipping" },
+                { icon: "history", title: "Heritage Fits", desc: "Classic Indian silhouettes" },
+                { icon: "verified", title: "Quality Check", desc: "Multi-point inspection" }
+              ].map((value, index) => (
+                <div key={index} style={{ 
+                  flex: '0 0 280px',
+                  padding: '32px 24px',
+                  background: 'white',
+                  borderRadius: '20px',
+                  textAlign: 'center',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.04)',
+                  border: '1px solid var(--border-light)'
+                }}>
+                  <div style={{ 
+                    width: '56px', 
+                    height: '56px', 
+                    background: 'var(--surface-container-low)', 
+                    borderRadius: '16px', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    margin: '0 auto 16px',
+                    color: 'var(--brand-gold)'
+                  }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '32px' }}>{value.icon}</span>
+                  </div>
+                  <h4 className="text-h4" style={{ fontSize: '16px', marginBottom: '8px' }}>{value.title}</h4>
+                  <p className="text-body-sm" style={{ opacity: 0.6 }}>{value.desc}</p>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -174,7 +150,14 @@ export default function Home() {
               We offer exclusive wholesale pricing and custom production services for bulk orders.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <button className="btn-outline" style={{ borderRadius: '24px', padding: '12px 32px', minWidth: '200px' }}>Contact Wholesale Team</button>
+              <a 
+                href="https://wa.me/918825481550" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                <button className="btn-outline" style={{ borderRadius: '24px', padding: '12px 32px', minWidth: '200px' }}>Contact Wholesale Team</button>
+              </a>
             </div>
           </div>
         </div>

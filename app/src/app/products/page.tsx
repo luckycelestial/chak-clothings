@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
 const products = [
   {
@@ -55,10 +54,8 @@ const products = [
   }
 ];
 
-function ProductsContent() {
+export default function ProductsPage() {
   const [isMobile, setIsMobile] = useState(false);
-  const searchParams = useSearchParams();
-  const searchQuery = searchParams.get('q')?.toLowerCase() || "";
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -67,14 +64,9 @@ function ProductsContent() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const filteredProducts = products.filter(product => 
-    product.name.toLowerCase().includes(searchQuery) || 
-    product.category.toLowerCase().includes(searchQuery)
-  );
-
   return (
-    <div className="container animate-fade-in" style={{ paddingTop: '48px', paddingBottom: '160px' }}>
-      <div style={{ 
+    <div className="container animate-fade-in" style={{ paddingTop: '72px', paddingBottom: '120px' }}>
+      <header style={{ 
         marginBottom: isMobile ? '32px' : '48px', 
         display: 'flex', 
         flexDirection: isMobile ? 'column' : 'row', 
@@ -83,10 +75,7 @@ function ProductsContent() {
         gap: '24px' 
       }}>
         <div>
-          <span style={{ color: 'var(--gold-luxury)', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.3em', marginBottom: '8px', display: 'block' }}>Autumn / Winter 24</span>
-          <h2 className="text-h2" style={{ fontSize: isMobile ? '24px' : '36px' }}>
-            {searchQuery ? `Results for "${searchQuery}"` : "The Collection"}
-          </h2>
+          <h2 className="text-h2" style={{ fontSize: isMobile ? '24px' : '36px' }}>The Collection</h2>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', width: isMobile ? '100%' : 'auto', justifyContent: 'space-between' }}>
           <button style={{ 
@@ -106,22 +95,16 @@ function ProductsContent() {
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>tune</span>
             <span>Refine</span>
           </button>
-          <p className="text-body-sm" style={{ color: 'var(--on-surface-variant)', fontWeight: 500 }}>{filteredProducts.length} Items</p>
+          <p className="text-body-sm" style={{ color: 'var(--on-surface-variant)', fontWeight: 500 }}>{products.length} Items</p>
         </div>
-      </div>
+      </header>
 
-      {filteredProducts.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '80px 0' }}>
-          <p className="text-h3" style={{ color: 'var(--medium-grey)' }}>No items found matching your search.</p>
-          <Link href="/products" style={{ color: 'var(--action-blue)', marginTop: '16px', display: 'inline-block' }}>View all products</Link>
-        </div>
-      ) : (
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', 
-          gap: isMobile ? '16px' : '32px' 
-        }}>
-          {filteredProducts.map((product) => (
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fill, minmax(280px, 1fr))', 
+        gap: isMobile ? '12px' : '40px' 
+      }}>
+        {products.map((product) => (
           <Link href={`/products/${product.id}`} key={product.id} style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="group" style={{ cursor: 'pointer' }}>
               <div style={{ 
@@ -167,19 +150,6 @@ function ProductsContent() {
           </Link>
         ))}
       </div>
-      )}
     </div>
-  );
-}
-
-export default function ProductsPage() {
-  return (
-    <Suspense fallback={
-      <div className="container" style={{ paddingTop: '72px', textAlign: 'center' }}>
-        <p className="text-body-reg">Loading collection...</p>
-      </div>
-    }>
-      <ProductsContent />
-    </Suspense>
   );
 }
