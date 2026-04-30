@@ -21,7 +21,7 @@ export default function Home() {
         flexDirection: 'column', 
         alignItems: 'center', 
         width: '100%',
-        background: 'white',
+        background: '#0f0f0f',
         position: 'relative'
       }}>
         <div style={{ width: '100%' }}>
@@ -64,7 +64,7 @@ export default function Home() {
       </section>
 
       {/* New Arrivals Section */}
-      <section className="container" style={{ padding: '20px 20px 40px', background: 'white' }}>
+      <section className="container" style={{ padding: '20px 20px 40px', background: '#0f0f0f' }}>
         <h2 className="text-h2" style={{ marginBottom: '24px', fontSize: isMobile ? '22px' : '32px' }}>New Arrivals</h2>
         <div style={{ 
           display: 'grid', 
@@ -79,7 +79,7 @@ export default function Home() {
             { id: 104, name: "New Arrival 04", price: "₹689", image: "/new_arrivals/arrival-4.jpeg" }
           ].map((item) => (
             <Link key={item.id} href={`/products/${item.id}`} style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
-               <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
+               <div style={{ aspectRatio: '3/4', background: '#1a1a1a', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '2px solid #D4AF37' }}>
                   <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                </div>
                <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>{item.name}</p>
