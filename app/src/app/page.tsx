@@ -14,61 +14,49 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="animate-fade-in" style={{ paddingTop: isMobile ? '100px' : '0' }}>
+    <div className="animate-fade-in" style={{ paddingTop: isMobile ? '100px' : '80px' }}>
       {/* Brand Hero - Centered Logo */}
       <section style={{ 
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center', 
         width: '100%',
-        background: isMobile ? 'white' : 'radial-gradient(circle at center, #1a1a1a 0%, #000 100%)',
-        minHeight: isMobile ? 'auto' : '95vh',
-        position: 'relative',
-        overflow: 'hidden'
+        background: 'white',
+        position: 'relative'
       }}>
-        <div style={{ 
-          width: '100%', 
-          maxWidth: isMobile ? '100%' : '1600px',
-          padding: isMobile ? '0' : '40px 0'
-        }}>
+        <div style={{ width: '100%' }}>
           <img 
             src="/Chak_logo.jpg" 
             alt="CHAK Logo" 
             style={{ 
               width: '100%', 
               height: 'auto', 
-              display: 'block',
-              transform: isMobile ? 'none' : 'scale(1.05)',
-              transition: 'transform 0.5s ease'
+              display: 'block'
             }} 
           />
         </div>
 
-        {/* Explore Collections Button - Floating Look from Screenshot */}
+        {/* Explore Collections Button in its own Symmetric Black Box */}
         <div style={{ 
           width: '100%', 
-          padding: isMobile ? '48px 24px' : '0 24px 100px',
+          background: '#000', 
+          padding: isMobile ? '40px 20px' : '64px 20px',
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: isMobile ? '0' : '-120px',
-          zIndex: 10,
-          position: isMobile ? 'relative' : 'absolute',
-          bottom: isMobile ? 'auto' : '15vh'
+          alignItems: 'center'
         }}>
           <Link href="/products" className="btn-primary" style={{ 
             textDecoration: 'none', 
             borderRadius: '40px', 
-            padding: isMobile ? '14px 48px' : '20px 80px', 
+            padding: isMobile ? '14px 48px' : '18px 80px', 
             fontSize: isMobile ? '16px' : '18px', 
             fontWeight: 600,
-            background: isMobile ? 'var(--action-blue)' : 'rgba(29, 58, 137, 0.9)',
-            color: 'white',
-            backdropFilter: isMobile ? 'none' : 'blur(10px)',
-            boxShadow: isMobile ? '0 4px 20px rgba(0,0,0,0.3)' : '0 10px 40px rgba(0,0,0,0.5)',
-            border: isMobile ? 'none' : '1px solid rgba(255,255,255,0.1)',
+            background: 'white',
+            color: 'black',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
             transition: 'all 0.3s ease',
-            letterSpacing: '0.05em'
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em'
           }}>
             Explore Collections
           </Link>
