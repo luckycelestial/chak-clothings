@@ -41,14 +41,14 @@ export default function ShoppingBag() {
 
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', 
-        gap: isMobile ? '32px' : '48px',
+        gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', 
+        gap: isMobile ? '32px' : '64px',
         alignItems: 'start'
       }}>
         
         {/* Cart Items */}
         <div style={{ 
-          gridColumn: isMobile ? 'span 1' : 'span 8', 
+          gridColumn: 'span 1', 
           display: isMobile ? 'grid' : 'flex', 
           gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'none',
           flexDirection: isMobile ? 'row' : 'column', 
@@ -90,31 +90,10 @@ export default function ShoppingBag() {
               </div>
             </div>
           ))}
-
-          {/* Complete the Look */}
-          <div style={{ marginTop: '64px', display: isMobile ? 'none' : 'block' }}>
-            <h2 className="text-h3" style={{ marginBottom: '32px' }}>Complete the Look</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
-              <div style={{ cursor: 'pointer' }}>
-                <div style={{ aspectRatio: '3/4', overflow: 'hidden', borderRadius: '8px', background: 'var(--surface-container)', marginBottom: '16px', position: 'relative' }}>
-                  <img src="/pants.png" alt="Cotton Chinos" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </div>
-                <p className="text-label">Cotton Chinos</p>
-                <p className="text-body-sm" style={{ color: 'var(--on-surface-variant)' }}>₹3,299</p>
-              </div>
-              <div style={{ cursor: 'pointer', marginTop: '48px' }}>
-                <div style={{ aspectRatio: '3/4', overflow: 'hidden', borderRadius: '8px', background: 'var(--surface-container)', marginBottom: '16px', position: 'relative' }}>
-                  <img src="/tshirt.png" alt="Premium Navy T-Shirt" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </div>
-                <p className="text-label">Premium Navy T-Shirt</p>
-                <p className="text-body-sm" style={{ color: 'var(--on-surface-variant)' }}>₹1,499</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Order Summary */}
-        <div style={{ gridColumn: isMobile ? 'span 1' : 'span 4' }}>
+        <div style={{ gridColumn: 'span 1' }}>
           <div style={{ 
             position: isMobile ? 'static' : 'sticky', 
             top: '120px', 

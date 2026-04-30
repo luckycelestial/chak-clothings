@@ -14,39 +14,61 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="animate-fade-in" style={{ paddingTop: '100px' }}>
+    <div className="animate-fade-in" style={{ paddingTop: isMobile ? '100px' : '0' }}>
       {/* Brand Hero - Centered Logo */}
       <section style={{ 
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center', 
         width: '100%',
-        background: 'white'
+        background: isMobile ? 'white' : 'radial-gradient(circle at center, #1a1a1a 0%, #000 100%)',
+        minHeight: isMobile ? 'auto' : '95vh',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div style={{ width: '100%' }}>
+        <div style={{ 
+          width: '100%', 
+          maxWidth: isMobile ? '100%' : '1600px',
+          padding: isMobile ? '0' : '40px 0'
+        }}>
           <img 
             src="/Chak_logo.jpg" 
             alt="CHAK Logo" 
-            style={{ width: '100%', height: 'auto', display: 'block' }} 
+            style={{ 
+              width: '100%', 
+              height: 'auto', 
+              display: 'block',
+              transform: isMobile ? 'none' : 'scale(1.05)',
+              transition: 'transform 0.5s ease'
+            }} 
           />
         </div>
 
-        {/* Explore Collections Button in its own Black Box */}
+        {/* Explore Collections Button - Floating Look from Screenshot */}
         <div style={{ 
           width: '100%', 
-          background: '#000', 
-          padding: isMobile ? '48px 24px' : '64px 24px',
+          padding: isMobile ? '48px 24px' : '0 24px 100px',
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          marginTop: isMobile ? '0' : '-120px',
+          zIndex: 10,
+          position: isMobile ? 'relative' : 'absolute',
+          bottom: isMobile ? 'auto' : '15vh'
         }}>
           <Link href="/products" className="btn-primary" style={{ 
             textDecoration: 'none', 
-            borderRadius: '24px', 
-            padding: isMobile ? '14px 48px' : '16px 64px', 
+            borderRadius: '40px', 
+            padding: isMobile ? '14px 48px' : '20px 80px', 
             fontSize: isMobile ? '16px' : '18px', 
             fontWeight: 600,
-            boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
+            background: isMobile ? 'var(--action-blue)' : 'rgba(29, 58, 137, 0.9)',
+            color: 'white',
+            backdropFilter: isMobile ? 'none' : 'blur(10px)',
+            boxShadow: isMobile ? '0 4px 20px rgba(0,0,0,0.3)' : '0 10px 40px rgba(0,0,0,0.5)',
+            border: isMobile ? 'none' : '1px solid rgba(255,255,255,0.1)',
+            transition: 'all 0.3s ease',
+            letterSpacing: '0.05em'
           }}>
             Explore Collections
           </Link>

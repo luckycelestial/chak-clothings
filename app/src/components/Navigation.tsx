@@ -32,12 +32,18 @@ export default function Navigation() {
         left: 0, 
         right: 0, 
         zIndex: 100, 
-        background: 'white',
+        background: pathname === '/' && !isSearchOpen ? 'transparent' : 'white',
+        borderBottom: pathname === '/' ? 'none' : '1px solid rgba(0,0,0,0.05)',
         justifyContent: 'center', 
-        boxShadow: 'none', 
-        borderBottom: '1px solid rgba(0,0,0,0.05)' 
+        boxShadow: 'none',
+        transition: 'all 0.3s ease'
       }}>
-        <Link href="/" className="logo" style={{ fontSize: '24px', letterSpacing: '0.2em', color: 'black', fontWeight: '700' }}>
+        <Link href="/" className="logo" style={{ 
+          fontSize: '24px', 
+          letterSpacing: '0.2em', 
+          color: pathname === '/' && !isSearchOpen ? 'white' : 'black', 
+          fontWeight: '700' 
+        }}>
           CHAK CLOTHINGS
         </Link>
       </header>
