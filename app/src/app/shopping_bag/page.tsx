@@ -33,7 +33,7 @@ export default function ShoppingBag() {
   }, []);
 
   return (
-    <div className="container animate-fade-in" style={{ paddingTop: '0px' }}>
+    <div className="container animate-fade-in" style={{ paddingTop: '48px' }}>
       <div style={{ marginBottom: isMobile ? '32px' : '48px' }}>
         <h1 className="text-h1" style={{ marginBottom: '8px' }}>Shopping Bag</h1>
         <p className="text-body-reg" style={{ color: 'var(--on-surface-variant)' }}>Review your premium selections from our heritage collection.</p>

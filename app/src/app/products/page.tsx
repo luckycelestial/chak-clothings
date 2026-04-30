@@ -73,7 +73,7 @@ function ProductsContent() {
   );
 
   return (
-    <div className="container animate-fade-in" style={{ paddingTop: '0px', paddingBottom: '160px' }}>
+    <div className="container animate-fade-in" style={{ paddingTop: '48px', paddingBottom: '160px' }}>
       <div style={{ 
         marginBottom: isMobile ? '32px' : '48px', 
         display: 'flex', 

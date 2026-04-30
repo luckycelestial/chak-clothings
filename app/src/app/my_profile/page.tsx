@@ -13,7 +13,7 @@ export default function ProfilePage() {
   }, []);
 
   return (
-    <div className="container animate-fade-in" style={{ paddingTop: '0px', paddingBottom: '120px' }}>
+    <div className="container animate-fade-in" style={{ paddingTop: '48px', paddingBottom: '120px' }}>
       {/* User Profile Header */}
       <section style={{ 
         display: 'grid', 
