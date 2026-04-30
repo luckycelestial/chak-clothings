@@ -14,7 +14,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="animate-fade-in" style={{ paddingTop: isMobile ? '100px' : '80px' }}>
+    <div className="animate-fade-in" style={{ paddingTop: '72px' }}>
       {/* Brand Hero - Centered Logo */}
       <section style={{ 
         display: 'flex', 
