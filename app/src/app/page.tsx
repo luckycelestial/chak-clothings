@@ -51,9 +51,9 @@ export default function Home() {
             padding: isMobile ? '14px 48px' : '18px 80px', 
             fontSize: isMobile ? '16px' : '18px', 
             fontWeight: 600,
-            background: 'white',
-            color: 'black',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+            background: '#D4AF37',
+            color: '#0f0f0f',
+            boxShadow: '0 4px 20px rgba(212, 175, 55, 0.3)',
             transition: 'all 0.3s ease',
             textTransform: 'uppercase',
             letterSpacing: '0.1em'
