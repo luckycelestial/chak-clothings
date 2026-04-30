@@ -165,8 +165,8 @@ export default function Navigation() {
           <span>Search</span>
         </button>
         <Link href="/shopping_bag" className={`nav-item ${isActive('/shopping_bag') ? 'active' : ''}`} onClick={() => setIsSearchOpen(false)}>
-          <div style={{ position: 'relative' }}>
-            <span className="material-symbols-outlined">shopping_cart</span>
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '24px', width: '24px' }}>
+            <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>shopping_bag</span>
             {cartCount > 0 && (
               <span style={{
                 position: 'absolute',
@@ -176,15 +176,16 @@ export default function Navigation() {
                 color: 'white',
                 fontSize: '10px',
                 fontWeight: 'bold',
-                minWidth: '18px',
-                height: '18px',
+                minWidth: '16px',
+                height: '16px',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 padding: '2px',
-                border: '2px solid white',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                border: '1.5px solid white',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                zIndex: 1
               }}>
                 {cartCount}
               </span>
