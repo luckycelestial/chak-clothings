@@ -69,36 +69,42 @@ export default function Home() {
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', 
-          gap: isMobile ? '16px' : '32px' 
+          gap: isMobile ? '16px' : '32px',
+          marginBottom: '40px'
         }}>
-          <div style={{ cursor: 'pointer' }}>
-             <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
-                <img src="/tshirt.png" alt="Black T-Shirt" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-             </div>
-             <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>Premium Black T-Shirt</p>
-             <p className="text-body-sm" style={{ opacity: 0.7 }}>₹1,499</p>
-          </div>
-          <div style={{ cursor: 'pointer' }}>
-             <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
-                <img src="/shirt.png" alt="White Shirt" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-             </div>
-             <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>Crisp White Shirt</p>
-             <p className="text-body-sm" style={{ opacity: 0.7 }}>₹2,499</p>
-          </div>
-          <div style={{ cursor: 'pointer' }}>
-             <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
-                <img src="/pants.png" alt="Chinos" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-             </div>
-             <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>Slim Fit Chinos</p>
-             <p className="text-body-sm" style={{ opacity: 0.7 }}>₹3,299</p>
-          </div>
-          <div style={{ cursor: 'pointer' }}>
-             <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
-                <img src="/tshirt.png" alt="Classic Tee" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-             </div>
-             <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>Classic Crew Tee</p>
-             <p className="text-body-sm" style={{ opacity: 0.7 }}>₹1,299</p>
-          </div>
+          {[
+            { id: 101, name: "New Arrival 01", price: "₹1,899", image: "/new_arrivals/arrival-1.jpeg" },
+            { id: 102, name: "New Arrival 02", price: "₹2,199", image: "/new_arrivals/arrival-2.jpeg" },
+            { id: 103, name: "New Arrival 03", price: "₹1,699", image: "/new_arrivals/arrival-3.jpeg" },
+            { id: 104, name: "New Arrival 04", price: "₹1,999", image: "/new_arrivals/arrival-4.jpeg" }
+          ].map((item) => (
+            <Link key={item.id} href={`/products/${item.id}`} style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+               <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
+                  <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+               </div>
+               <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>{item.name}</p>
+               <p className="text-body-sm" style={{ opacity: 0.7 }}>{item.price}</p>
+            </Link>
+          ))}
+        </div>
+
+        {/* New Arrival Feature Video */}
+        <div style={{ 
+          width: '100%', 
+          borderRadius: '16px', 
+          overflow: 'hidden', 
+          background: '#000',
+          aspectRatio: isMobile ? '9/16' : '16/9',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+        }}>
+          <video 
+            src="/new_arrivals/hero-video.mp4" 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
         </div>
       </section>
 

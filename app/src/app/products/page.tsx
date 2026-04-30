@@ -9,7 +9,7 @@ const products = [
     name: "Classic Black T-Shirt",
     category: "T-Shirts",
     price: "₹1,299",
-    image: "/tshirt.png",
+    image: "/products/product-1.jpeg",
     isPremium: true
   },
   {
@@ -17,39 +17,95 @@ const products = [
     name: "Royal White Shirt",
     category: "Shirts",
     price: "₹2,499",
-    image: "/shirt.png",
+    image: "/products/product-2.jpeg",
     isPremium: true
   },
   {
     id: 3,
-    name: "Olive Cotton Chinos",
-    category: "Pants",
-    price: "₹3,299",
-    image: "/pants.png",
+    name: "Tiruppur Cotton Tee",
+    category: "T-Shirts",
+    price: "₹1,499",
+    image: "/products/product-3.jpeg",
     isPremium: false
   },
   {
     id: 4,
-    name: "Premium Navy T-Shirt",
-    category: "T-Shirts",
-    price: "₹1,499",
-    image: "/tshirt.png",
-    isPremium: false
+    name: "Heritage Linen Shirt",
+    category: "Shirts",
+    price: "₹3,299",
+    image: "/products/product-4.jpeg",
+    isPremium: true
   },
   {
     id: 5,
-    name: "Slim Fit Cotton Pants",
-    category: "Pants",
-    price: "₹2,899",
-    image: "/pants.png",
+    name: "Premium Indigo Polo",
+    category: "T-Shirts",
+    price: "₹1,899",
+    image: "/products/product-5.jpeg",
     isPremium: false
   },
   {
     id: 6,
-    name: "Oxford Formal Shirt",
+    name: "Signature Gold Edition",
+    category: "Shirts",
+    price: "₹4,499",
+    image: "/products/product-6.jpeg",
+    isPremium: true
+  },
+  {
+    id: 7,
+    name: "Classic Kurta Shirt",
+    category: "Heritage",
+    price: "₹2,899",
+    image: "/products/product-7.jpeg",
+    isPremium: false
+  },
+  {
+    id: 8,
+    name: "Modern Fit Chinos",
+    category: "Pants",
+    price: "₹3,499",
+    image: "/products/product-8.jpeg",
+    isPremium: false
+  },
+  {
+    id: 9,
+    name: "Urban Utility T-Shirt",
+    category: "T-Shirts",
+    price: "₹1,299",
+    image: "/products/product-9.jpeg",
+    isPremium: false
+  },
+  {
+    id: 10,
+    name: "Luxury Silk Blend Shirt",
+    category: "Premium",
+    price: "₹5,299",
+    image: "/products/product-10.jpeg",
+    isPremium: true
+  },
+  {
+    id: 11,
+    name: "Artisan Crafted Tee",
+    category: "T-Shirts",
+    price: "₹1,599",
+    image: "/products/product-11.jpeg",
+    isPremium: false
+  },
+  {
+    id: 12,
+    name: "Classic White Poplin",
     category: "Shirts",
     price: "₹2,199",
     image: "/shirt.png",
+    isPremium: false
+  },
+  {
+    id: 13,
+    name: "Premium Crew Tee",
+    category: "T-Shirts",
+    price: "₹1,199",
+    image: "/tshirt.png",
     isPremium: false
   }
 ];

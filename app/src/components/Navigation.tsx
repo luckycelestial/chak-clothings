@@ -3,12 +3,16 @@
 import { useState, KeyboardEvent } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useCart } from "@/context/CartContext";
+
 
 export default function Navigation() {
   const pathname = usePathname();
   const router = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const { cartCount } = useCart();
+
 
   const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchQuery.trim()) {
@@ -27,16 +31,17 @@ export default function Navigation() {
   return (
     <>
       <header className="header" style={{ 
-        position: 'absolute', 
+        position: 'fixed', 
         top: 0, 
         left: 0, 
         right: 0, 
-        zIndex: 100, 
+        zIndex: 1000, 
         background: 'white',
         borderBottom: '1px solid rgba(0,0,0,0.05)',
         justifyContent: 'center', 
         boxShadow: 'none',
-        transition: 'all 0.3s ease'
+        transition: 'all 0.3s ease',
+        height: '72px'
       }}>
         <Link href="/" className="logo" style={{ 
           fontSize: '24px', 
@@ -130,9 +135,34 @@ export default function Navigation() {
           <span>Search</span>
         </button>
         <Link href="/shopping_bag" className={`nav-item ${isActive('/shopping_bag') ? 'active' : ''}`} onClick={() => setIsSearchOpen(false)}>
-          <span className="material-symbols-outlined">shopping_cart</span>
+          <div style={{ position: 'relative' }}>
+            <span className="material-symbols-outlined">shopping_cart</span>
+            {cartCount > 0 && (
+              <span style={{
+                position: 'absolute',
+                top: '-8px',
+                right: '-8px',
+                background: 'var(--brand-gold)',
+                color: 'white',
+                fontSize: '10px',
+                fontWeight: 'bold',
+                minWidth: '18px',
+                height: '18px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '2px',
+                border: '2px solid white',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              }}>
+                {cartCount}
+              </span>
+            )}
+          </div>
           <span>Cart</span>
         </Link>
+
         <Link href="/my_profile" className={`nav-item ${isActive('/my_profile') ? 'active' : ''}`} onClick={() => setIsSearchOpen(false)}>
           <span className="material-symbols-outlined">person</span>
           <span>Profile</span>

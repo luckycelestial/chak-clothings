@@ -2,28 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const cartItems = [
-  {
-    id: 1,
-    name: "Classic Black T-Shirt",
-    details: "Size: M | Color: Black",
-    price: "₹1,299",
-    image: "/tshirt.png",
-    quantity: 1
-  },
-  {
-    id: 2,
-    name: "Royal White Shirt",
-    details: "Size: 42 | Color: White",
-    price: "₹2,499",
-    image: "/shirt.png",
-    quantity: 1
-  }
-];
+import { useCart } from "@/context/CartContext";
 
 export default function ShoppingBag() {
   const [isMobile, setIsMobile] = useState(false);
+  const { cart, removeFromCart, updateQuantity, cartTotal } = useCart();
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -31,6 +14,25 @@ export default function ShoppingBag() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  const subtotal = cartTotal;
+  const shipping = 0; // Complimentary
+  const gst = Math.round(subtotal * 0.12);
+  const total = subtotal + shipping + gst;
+
+  if (cart.length === 0) {
+    return (
+      <div className="container animate-fade-in" style={{ paddingTop: '120px', textAlign: 'center' }}>
+        <h1 className="text-h1" style={{ marginBottom: '24px' }}>Your Bag is Empty</h1>
+        <p className="text-body-reg" style={{ marginBottom: '40px', color: 'var(--on-surface-variant)' }}>
+          Discover our latest arrivals and find something special.
+        </p>
+        <Link href="/products" className="btn-primary" style={{ padding: '16px 48px' }}>
+          Explore Collections
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="container animate-fade-in" style={{ paddingTop: '72px', paddingBottom: '120px' }}>
@@ -46,45 +48,73 @@ export default function ShoppingBag() {
         alignItems: 'start'
       }}>
         
-        {/* Cart Items */}
+        {/* Cart Items - 2 column grid on left half (PC) */}
         <div style={{ 
-          gridColumn: 'span 1', 
-          display: isMobile ? 'grid' : 'flex', 
-          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'none',
-          flexDirection: isMobile ? 'row' : 'column', 
-          gap: isMobile ? '16px' : '32px' 
+          display: 'grid', 
+          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(2, 1fr)', 
+          gap: isMobile ? '16px' : '24px' 
         }}>
-          {cartItems.map(item => (
-            <div key={item.id} style={{ 
+          {cart.map((item, index) => (
+            <div key={`${item.id}-${item.size}-${item.color}`} style={{ 
               display: 'flex', 
               flexDirection: 'column', 
               gap: '12px', 
-              padding: '12px', 
-              background: 'var(--ivory-white)', 
+              padding: '16px', 
+              background: 'white', 
               border: '1px solid var(--border-light)', 
-              borderRadius: '12px',
-              position: 'relative'
-            }} className="cart-item">
+              borderRadius: '16px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
+              position: 'relative',
+              transition: 'transform 0.2s ease'
+            }} className="cart-item-card">
               <div style={{ 
                 width: '100%', 
-                aspectRatio: '1/1', 
+                aspectRatio: '3/4', 
                 overflow: 'hidden', 
-                borderRadius: '8px' 
+                borderRadius: '8px',
+                background: 'var(--surface-container-low)'
               }}>
                 <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
+              
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <h3 className="text-body-sm" style={{ fontWeight: 700, color: 'var(--primary)', fontSize: '13px', lineHeight: 1.2 }}>{item.name}</h3>
-                  <button style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--on-surface-variant)', padding: 0 }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>close</span>
+                  <h3 style={{ fontWeight: 700, fontSize: '14px', lineHeight: 1.2, margin: 0 }}>{item.name}</h3>
+                  <button 
+                    onClick={() => removeFromCart(item.id, item.size, item.color)}
+                    style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: '#ff4444', padding: '4px' }}
+                  >
+                    <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>delete_outline</span>
                   </button>
                 </div>
-                <p style={{ fontSize: '10px', color: 'var(--on-surface-variant)' }}>{item.details}</p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
-                  <span className="text-body-sm" style={{ fontWeight: 700, color: 'var(--brand-gold)' }}>{item.price}</span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'white', borderRadius: '99px', padding: '2px 8px', border: '1px solid var(--border-light)' }}>
-                    <span style={{ fontSize: '12px', fontWeight: 600 }}>{item.quantity}</span>
+                
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: '10px', background: 'var(--surface-container-high)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>{item.size}</span>
+                  <span style={{ fontSize: '10px', background: 'var(--surface-container-high)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>{item.color}</span>
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '8px' }}>
+                  <span style={{ fontWeight: 700, color: 'black', fontSize: '15px' }}>{item.price}</span>
+                  
+                  {/* Quantity Controls */}
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '12px',
+                    border: '1px solid var(--border-light)',
+                    borderRadius: '99px',
+                    padding: '2px 8px',
+                    background: 'var(--ivory-white)'
+                  }}>
+                    <button 
+                      onClick={() => updateQuantity(item.id, item.size, item.color, item.quantity - 1)}
+                      style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: 'bold' }}
+                    >−</button>
+                    <span style={{ fontSize: '12px', fontWeight: 600, minWidth: '16px', textAlign: 'center' }}>{item.quantity}</span>
+                    <button 
+                      onClick={() => updateQuantity(item.id, item.size, item.color, item.quantity + 1)}
+                      style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: 'bold' }}
+                    >+</button>
                   </div>
                 </div>
               </div>
@@ -92,44 +122,76 @@ export default function ShoppingBag() {
           ))}
         </div>
 
-        {/* Order Summary */}
-        <div style={{ gridColumn: 'span 1' }}>
+        {/* Order Summary - Right half (PC) */}
+        <div>
           <div style={{ 
             position: isMobile ? 'static' : 'sticky', 
             top: '120px', 
-            padding: isMobile ? '24px' : '32px', 
+            padding: isMobile ? '24px' : '40px', 
             background: 'var(--charcoal-black)', 
             color: 'white', 
-            borderRadius: '16px', 
-            border: '2px solid var(--gold-luxury)',
-            boxShadow: '0 0 30px rgba(212, 175, 55, 0.1)'
+            borderRadius: '24px', 
+            border: '1px solid var(--gold-luxury)',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.15)'
           }}>
-            <h3 className="text-h3" style={{ color: 'var(--gold-luxury)', marginBottom: '24px' }}>Order Summary</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: '#A0A0A0' }}>Subtotal</span>
-                <span>₹3,798</span>
+            <h3 className="text-h3" style={{ color: 'var(--gold-luxury)', marginBottom: '32px', letterSpacing: '0.05em' }}>Order Summary</h3>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '40px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ color: '#A0A0A0', fontSize: '14px' }}>Subtotal</span>
+                <span style={{ fontWeight: 500 }}>₹{subtotal.toLocaleString()}</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: '#A0A0A0' }}>Shipping</span>
-                <span style={{ color: 'var(--gold-luxury)', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '10px', fontWeight: 700 }}>Complimentary</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ color: '#A0A0A0', fontSize: '14px' }}>Shipping</span>
+                <span style={{ color: 'var(--gold-luxury)', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '11px', fontWeight: 700 }}>Complimentary</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: '#A0A0A0' }}>GST (12%)</span>
-                <span>₹455</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ color: '#A0A0A0', fontSize: '14px' }}>GST (12%)</span>
+                <span style={{ fontWeight: 500 }}>₹{gst.toLocaleString()}</span>
               </div>
-              <div style={{ paddingTop: '16px', marginTop: '16px', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                <span className="text-h4">Total</span>
-                <span className="text-h2" style={{ color: 'var(--gold-luxury)' }}>₹4,253</span>
+              
+              <div style={{ 
+                paddingTop: '24px', 
+                marginTop: '12px', 
+                borderTop: '1px solid rgba(255,255,255,0.1)', 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'baseline' 
+              }}>
+                <span style={{ fontSize: '18px', fontWeight: 600 }}>Total</span>
+                <div style={{ textAlign: 'right' }}>
+                  <span style={{ fontSize: '32px', fontWeight: 700, color: 'var(--gold-luxury)' }}>₹{total.toLocaleString()}</span>
+                  <p style={{ fontSize: '10px', color: '#A0A0A0', margin: 0, textTransform: 'uppercase', letterSpacing: '0.1em' }}>All taxes included</p>
+                </div>
               </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <button className="btn-primary" style={{ width: '100%', padding: '16px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Secure Checkout</button>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                <span className="material-symbols-outlined" style={{ color: 'var(--gold-luxury)', fontSize: '18px' }}>verified_user</span>
-                <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#A0A0A0' }}>Guaranteed Safe Checkout</span>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <button className="btn-primary" style={{ 
+                width: '100%', 
+                padding: '20px', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.2em',
+                fontSize: '14px',
+                fontWeight: 700,
+                background: 'white',
+                color: 'black',
+                borderRadius: '12px'
+              }}>Proceed to Checkout</button>
+              
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', opacity: 0.7 }}>
+                <span className="material-symbols-outlined" style={{ color: 'var(--gold-luxury)', fontSize: '20px' }}>shield_lock</span>
+                <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Secure encrypted payment</span>
               </div>
             </div>
+          </div>
+          
+          <div style={{ marginTop: '32px', padding: '24px', borderRadius: '16px', background: 'var(--surface-container-low)', border: '1px solid var(--border-light)' }}>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, marginBottom: '12px' }}>Wholesale Inquiries</h4>
+            <p style={{ fontSize: '12px', color: 'var(--on-surface-variant)', lineHeight: 1.5, marginBottom: '16px' }}>
+              Ordering for a team or retail store? Our wholesale partners receive exclusive heritage pricing and custom tailoring services.
+            </p>
+            <a href="https://wa.me/918825481550" target="_blank" style={{ color: 'var(--action-blue)', fontWeight: 600, fontSize: '12px', textDecoration: 'none' }}>Contact Wholesale Team →</a>
           </div>
         </div>
       </div>

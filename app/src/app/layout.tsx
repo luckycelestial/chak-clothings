@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: "Long lasting Clothings crafted in Tiruppur",
 };
 
+import { CartProvider } from "@/context/CartContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,10 +22,12 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0..1&display=swap" rel="stylesheet" />
       </head>
       <body className="antialiased">
-        <Navigation />
-        <main style={{ paddingBottom: '100px' }}>
-          {children}
-        </main>
+        <CartProvider>
+          <Navigation />
+          <main style={{ paddingBottom: '100px' }}>
+            {children}
+          </main>
+        </CartProvider>
       </body>
     </html>
   );
