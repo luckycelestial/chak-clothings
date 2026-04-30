@@ -122,6 +122,12 @@ export default function Navigation() {
                 outline: 'none'
               }}
             />
+            <style>{`
+              input::placeholder {
+                color: #D4AF37 !important;
+                opacity: 0.8 !important;
+              }
+            `}</style>
             <button 
               onClick={() => setIsSearchOpen(false)}
               style={{
@@ -129,8 +135,8 @@ export default function Navigation() {
                 right: '12px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                background: 'var(--action-blue)',
-                color: 'white',
+                background: '#D4AF37',
+                color: '#0f0f0f',
                 border: 'none',
                 width: '36px',
                 height: '36px',
