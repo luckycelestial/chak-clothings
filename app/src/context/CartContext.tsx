@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+
 
 export interface CartItem {
   id: number;
@@ -20,12 +21,19 @@ interface CartContextType {
   clearCart: () => void;
   cartTotal: number;
   cartCount: number;
+  toast: string | null;
+  showToast: (message: string) => void;
 }
+
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [toast, setToast] = useState<string | null>(null);
+  const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -77,6 +85,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => setCart([]);
 
+  const showToast = (message: string) => {
+    if (toastTimeoutRef.current) {
+      clearTimeout(toastTimeoutRef.current);
+    }
+    setToast(message);
+    toastTimeoutRef.current = setTimeout(() => {
+      setToast(null);
+      toastTimeoutRef.current = null;
+    }, 3000);
+  };
+
+
+
   const cartTotal = cart.reduce((total, item) => {
     const price = parseInt(item.price.replace(/[^0-9]/g, ''));
     return total + price * item.quantity;
@@ -92,8 +113,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       updateQuantity, 
       clearCart, 
       cartTotal, 
-      cartCount 
+      cartCount,
+      toast,
+      showToast
     }}>
+
       {children}
     </CartContext.Provider>
   );

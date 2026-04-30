@@ -11,7 +11,8 @@ export default function Navigation() {
   const router = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const { cartCount } = useCart();
+  const { cartCount, toast } = useCart();
+
 
 
   const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -53,7 +54,36 @@ export default function Navigation() {
         </Link>
       </header>
 
+      {/* Toast Notification */}
+      {toast && (
+        <div style={{
+          position: 'fixed',
+          bottom: '100px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 1002,
+          animation: 'slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}>
+          <div style={{
+            background: 'var(--charcoal-black)',
+            color: 'white',
+            padding: '12px 24px',
+            borderRadius: '99px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+            border: '1px solid var(--gold-luxury)',
+            whiteSpace: 'nowrap'
+          }}>
+            <span className="material-symbols-outlined" style={{ color: 'var(--gold-luxury)', fontSize: '20px' }}>check_circle</span>
+            <span style={{ fontSize: '14px', fontWeight: 600, letterSpacing: '0.05em' }}>{toast}</span>
+          </div>
+        </div>
+      )}
+
       {/* Persistent Search Bar (Toggled) */}
+
       {isSearchOpen && (
         <div style={{
           position: 'fixed',

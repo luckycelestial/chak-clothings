@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
+
 import Link from "next/link";
 
 const products = [
@@ -182,14 +183,19 @@ import { useCart } from "@/context/CartContext";
 // ... (existing COLORS and SIZES) ...
 
 
-export default function ProductDetail({ params }: { params: { id: string } }) {
+export default function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params);
+  const productId = resolvedParams.id;
+
   const [isMobile, setIsMobile] = useState(false);
   const [selectedSize, setSelectedSize] = useState('M');
   const [selectedColor, setSelectedColor] = useState(COLORS[0]);
   const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useCart();
+  const { addToCart, showToast } = useCart();
+
   
-  const product = products.find(p => p.id === parseInt(params.id)) || products[0];
+  const product = products.find(p => p.id === parseInt(productId)) || products[0];
+
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -208,8 +214,9 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
       size: selectedSize,
       color: selectedColor.name
     });
-    alert(`Added ${quantity} ${product.name} to cart`);
+    showToast(`${product.name} Added!`);
   };
+
 
   return (
     <div className="container animate-fade-in" style={{ paddingTop: '80px', paddingBottom: '120px' }}>
