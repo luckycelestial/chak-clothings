@@ -23,11 +23,11 @@ export default function ShoppingBag() {
   if (cart.length === 0) {
     return (
       <div className="container animate-fade-in" style={{ paddingTop: '120px', textAlign: 'center' }}>
-        <h1 className="text-h1" style={{ marginBottom: '24px' }}>Your Bag is Empty</h1>
-        <p className="text-body-reg" style={{ marginBottom: '40px', color: 'var(--on-surface-variant)' }}>
+        <h1 className="text-h1" style={{ marginBottom: '24px', color: '#e8e8e8' }}>Your Bag is Empty😔</h1>
+        <p className="text-body-reg" style={{ marginBottom: '40px', color: '#b0b0b0' }}>
           Discover our latest arrivals and find something special.
         </p>
-        <Link href="/products" className="btn-primary" style={{ padding: '16px 48px' }}>
+        <Link href="/products" className="btn-primary" style={{ padding: '16px 48px', background: '#D4AF37', color: '#0f0f0f', textDecoration: 'none', borderRadius: '40px', fontWeight: 600, display: 'inline-block', boxShadow: '0 4px 20px rgba(212, 175, 55, 0.3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
           Explore Collections
         </Link>
       </div>
@@ -37,8 +37,8 @@ export default function ShoppingBag() {
   return (
     <div className="container animate-fade-in" style={{ paddingTop: '72px', paddingBottom: '120px' }}>
       <div style={{ marginBottom: isMobile ? '32px' : '48px' }}>
-        <h1 className="text-h1" style={{ marginBottom: '8px' }}>Shopping Bag</h1>
-        <p className="text-body-reg" style={{ color: 'var(--on-surface-variant)' }}>Review your premium selections from our heritage collection.</p>
+        <h1 className="text-h1" style={{ marginBottom: '8px', color: '#e8e8e8' }}>Shopping Bag</h1>
+        <p className="text-body-reg" style={{ color: '#b0b0b0' }}>Review your premium selections from our heritage collection.</p>
       </div>
 
       <div style={{ 
@@ -60,10 +60,10 @@ export default function ShoppingBag() {
               flexDirection: 'column', 
               gap: '12px', 
               padding: '16px', 
-              background: 'white', 
-              border: '1px solid var(--border-light)', 
+              background: '#1a1a1a', 
+              border: '2px solid #D4AF37', 
               borderRadius: '16px',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
+              boxShadow: '0 4px 12px rgba(212, 175, 55, 0.1)',
               position: 'relative',
               transition: 'transform 0.2s ease'
             }} className="cart-item-card">
@@ -72,14 +72,15 @@ export default function ShoppingBag() {
                 aspectRatio: '3/4', 
                 overflow: 'hidden', 
                 borderRadius: '8px',
-                background: 'var(--surface-container-low)'
+                background: '#0f0f0f',
+                border: '1px solid #D4AF37'
               }}>
                 <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <h3 style={{ fontWeight: 700, fontSize: '14px', lineHeight: 1.2, margin: 0 }}>{item.name}</h3>
+                  <h3 style={{ fontWeight: 700, fontSize: '14px', lineHeight: 1.2, margin: 0, color: '#e8e8e8' }}>{item.name}</h3>
                   <button 
                     onClick={() => removeFromCart(item.id, item.size, item.color)}
                     style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: '#ff4444', padding: '4px' }}
@@ -89,31 +90,31 @@ export default function ShoppingBag() {
                 </div>
                 
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: '10px', background: 'var(--surface-container-high)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>{item.size}</span>
-                  <span style={{ fontSize: '10px', background: 'var(--surface-container-high)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>{item.color}</span>
+                  <span style={{ fontSize: '10px', background: '#252525', padding: '2px 8px', borderRadius: '4px', fontWeight: 600, color: '#D4AF37', border: '1px solid #D4AF37' }}>{item.size}</span>
+                  <span style={{ fontSize: '10px', background: '#252525', padding: '2px 8px', borderRadius: '4px', fontWeight: 600, color: '#D4AF37', border: '1px solid #D4AF37' }}>{item.color}</span>
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '8px' }}>
-                  <span style={{ fontWeight: 700, color: 'black', fontSize: '15px' }}>{item.price}</span>
+                  <span style={{ fontWeight: 700, color: '#D4AF37', fontSize: '15px' }}>{item.price}</span>
                   
                   {/* Quantity Controls */}
                   <div style={{ 
                     display: 'flex', 
                     alignItems: 'center', 
                     gap: '12px',
-                    border: '1px solid var(--border-light)',
+                    border: '1px solid #D4AF37',
                     borderRadius: '99px',
                     padding: '2px 8px',
-                    background: 'var(--ivory-white)'
+                    background: '#252525'
                   }}>
                     <button 
                       onClick={() => updateQuantity(item.id, item.size, item.color, item.quantity - 1)}
-                      style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: 'bold' }}
+                      style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: 'bold', color: '#D4AF37' }}
                     >−</button>
-                    <span style={{ fontSize: '12px', fontWeight: 600, minWidth: '16px', textAlign: 'center' }}>{item.quantity}</span>
+                    <span style={{ fontSize: '12px', fontWeight: 600, minWidth: '16px', textAlign: 'center', color: '#e8e8e8' }}>{item.quantity}</span>
                     <button 
                       onClick={() => updateQuantity(item.id, item.size, item.color, item.quantity + 1)}
-                      style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: 'bold' }}
+                      style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: '16px', fontWeight: 'bold', color: '#D4AF37' }}
                     >+</button>
                   </div>
                 </div>
@@ -174,9 +175,11 @@ export default function ShoppingBag() {
                 letterSpacing: '0.2em',
                 fontSize: '14px',
                 fontWeight: 700,
-                background: 'white',
-                color: 'black',
-                borderRadius: '12px'
+                background: '#D4AF37',
+                color: '#0f0f0f',
+                borderRadius: '12px',
+                border: 'none',
+                cursor: 'pointer'
               }}>Proceed to Checkout</button>
               
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', opacity: 0.7 }}>
@@ -186,12 +189,12 @@ export default function ShoppingBag() {
             </div>
           </div>
           
-          <div style={{ marginTop: '32px', padding: '24px', borderRadius: '16px', background: 'var(--surface-container-low)', border: '1px solid var(--border-light)' }}>
-            <h4 style={{ fontSize: '14px', fontWeight: 700, marginBottom: '12px' }}>Wholesale Inquiries</h4>
-            <p style={{ fontSize: '12px', color: 'var(--on-surface-variant)', lineHeight: 1.5, marginBottom: '16px' }}>
+          <div style={{ marginTop: '32px', padding: '24px', borderRadius: '16px', background: '#1a1a1a', border: '2px solid #D4AF37' }}>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, marginBottom: '12px', color: '#D4AF37' }}>Wholesale Inquiries</h4>
+            <p style={{ fontSize: '12px', color: '#b0b0b0', lineHeight: 1.5, marginBottom: '16px' }}>
               Ordering for a team or retail store? Our wholesale partners receive exclusive heritage pricing and custom tailoring services.
             </p>
-            <a href="https://wa.me/918825481550" target="_blank" style={{ color: 'var(--action-blue)', fontWeight: 600, fontSize: '12px', textDecoration: 'none' }}>Contact Wholesale Team →</a>
+            <a href="https://wa.me/918825481550" target="_blank" style={{ color: '#D4AF37', fontWeight: 600, fontSize: '12px', textDecoration: 'none' }}>Contact Wholesale Team →</a>
           </div>
         </div>
       </div>
