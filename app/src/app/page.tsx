@@ -95,7 +95,8 @@ export default function Home() {
           overflow: 'hidden', 
           background: '#000',
           aspectRatio: isMobile ? '9/16' : '16/9',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+          boxShadow: '0 20px 40px rgba(212, 175, 55, 0.15)',
+          border: '2px solid #D4AF37'
         }}>
           <video 
             src="/new_arrivals/hero-video.mp4" 
@@ -109,7 +110,7 @@ export default function Home() {
       </section>
 
       {/* Value Propositions - Auto Scrolling Marquee */}
-      <section style={{ background: 'var(--surface-container)', padding: '60px 0', overflow: 'hidden' }}>
+      <section style={{ background: '#0f0f0f', padding: '60px 0', overflow: 'hidden' }}>
         <div className="marquee-container">
           {[...Array(3)].map((_, i) => (
             <div key={i} style={{ display: 'flex', gap: '20px' }}>
@@ -123,27 +124,27 @@ export default function Home() {
                 <div key={index} style={{ 
                   flex: '0 0 280px',
                   padding: '32px 24px',
-                  background: 'white',
+                  background: '#1a1a1a',
                   borderRadius: '20px',
                   textAlign: 'center',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.04)',
-                  border: '1px solid var(--border-light)'
+                  boxShadow: '0 8px 24px rgba(212, 175, 55, 0.08)',
+                  border: '2px solid #D4AF37'
                 }}>
                   <div style={{ 
                     width: '56px', 
                     height: '56px', 
-                    background: 'var(--surface-container-low)', 
+                    background: '#252525', 
                     borderRadius: '16px', 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center',
                     margin: '0 auto 16px',
-                    color: 'var(--brand-gold)'
+                    color: '#D4AF37'
                   }}>
                     <span className="material-symbols-outlined" style={{ fontSize: '32px' }}>{value.icon}</span>
                   </div>
-                  <h4 className="text-h4" style={{ fontSize: '16px', marginBottom: '8px' }}>{value.title}</h4>
-                  <p className="text-body-sm" style={{ opacity: 0.6 }}>{value.desc}</p>
+                  <h4 className="text-h4" style={{ fontSize: '16px', marginBottom: '8px', color: '#e8e8e8' }}>{value.title}</h4>
+                  <p className="text-body-sm" style={{ opacity: 0.7, color: '#b0b0b0' }}>{value.desc}</p>
                 </div>
               ))}
             </div>
@@ -152,7 +153,7 @@ export default function Home() {
       </section>
 
       {/* Wholesale Partnership */}
-      <section className="section" style={{ padding: '40px 0' }}>
+      <section className="section" style={{ padding: '40px 0', background: '#0f0f0f' }}>
         <div className="container">
           <div style={{ 
             textAlign: 'center', 
@@ -160,8 +161,8 @@ export default function Home() {
             margin: '0 auto',
             padding: '0 20px' 
           }}>
-            <h2 className="text-h2" style={{ marginBottom: '20px', fontSize: isMobile ? '24px' : '32px' }}>Wholesale Partnership</h2>
-            <p className="text-body-reg" style={{ color: 'var(--slate-gray)', marginBottom: '32px', lineHeight: '1.6' }}>
+            <h2 className="text-h2" style={{ marginBottom: '20px', fontSize: isMobile ? '24px' : '32px', color: '#e8e8e8' }}>Wholesale Partnership</h2>
+            <p className="text-body-reg" style={{ color: '#b0b0b0', marginBottom: '32px', lineHeight: '1.6' }}>
               Partner with CHAK to bring premium Tiruppur craftsmanship to your retail space. 
               We offer exclusive wholesale pricing and custom production services for bulk orders.
             </p>
@@ -172,7 +173,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none' }}
               >
-                <button className="btn-outline" style={{ borderRadius: '24px', padding: '12px 32px', minWidth: '200px' }}>Contact Wholesale Team</button>
+                <button className="btn-outline" style={{ borderRadius: '24px', padding: '12px 32px', minWidth: '200px', background: '#D4AF37', color: '#0f0f0f', border: 'none', fontWeight: 600, cursor: 'pointer' }}>Contact Wholesale Team</button>
               </a>
             </div>
           </div>
