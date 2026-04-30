@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navigation() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const router = typeof window !== 'undefined' ? require('next/navigation').useRouter() : null;
 
   const isActive = (path: string) => {
     if (path === "/" && pathname === "/") return true;
