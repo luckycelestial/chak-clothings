@@ -131,10 +131,10 @@ export default function ShoppingBag() {
             background: 'white', 
             color: 'black', 
             borderRadius: '24px', 
-            border: '2px solid var(--gold-luxury)',
+            border: '2px solid black',
             boxShadow: '0 20px 50px rgba(212,175,55,0.1)'
           }}>
-            <h3 className="text-h3" style={{ color: 'var(--gold-luxury)', marginBottom: '32px', letterSpacing: '0.05em' }}>Order Summary</h3>
+            <h3 className="text-h3" style={{ color: 'black', marginBottom: '32px', letterSpacing: '0.05em' }}>Order Summary</h3>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '40px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -143,7 +143,7 @@ export default function ShoppingBag() {
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ color: '#666666', fontSize: '14px' }}>Shipping</span>
-                <span style={{ color: 'var(--gold-luxury)', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '11px', fontWeight: 700 }}>Complimentary</span>
+                <span style={{ color: '#22c55e', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '11px', fontWeight: 700 }}>Complimentary</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ color: '#666666', fontSize: '14px' }}>GST (12%)</span>
