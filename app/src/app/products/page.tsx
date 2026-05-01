@@ -170,7 +170,7 @@ export default function ProductsPage() {
                 marginBottom: '12px', 
                 borderRadius: '8px', 
                 overflow: 'hidden',
-                border: '2px solid #D4AF37',
+                border: product.isPremium ? '1px solid var(--gold-luxury)' : '1px solid var(--border-light)',
               }}>
                 <img 
                   src={product.image} 

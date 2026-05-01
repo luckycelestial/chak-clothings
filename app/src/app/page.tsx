@@ -21,7 +21,7 @@ export default function Home() {
         flexDirection: 'column', 
         alignItems: 'center', 
         width: '100%',
-        background: '#0f0f0f',
+        background: 'white',
         position: 'relative'
       }}>
         <div style={{ width: '100%' }}>
@@ -51,9 +51,9 @@ export default function Home() {
             padding: isMobile ? '14px 48px' : '18px 80px', 
             fontSize: isMobile ? '16px' : '18px', 
             fontWeight: 600,
-            background: '#D4AF37',
-            color: '#0f0f0f',
-            boxShadow: '0 4px 20px rgba(212, 175, 55, 0.3)',
+            background: 'white',
+            color: 'black',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
             transition: 'all 0.3s ease',
             textTransform: 'uppercase',
             letterSpacing: '0.1em'
@@ -64,7 +64,7 @@ export default function Home() {
       </section>
 
       {/* New Arrivals Section */}
-      <section className="container" style={{ padding: '20px 20px 40px', background: '#0f0f0f' }}>
+      <section className="container" style={{ padding: '20px 20px 40px', background: 'white' }}>
         <h2 className="text-h2" style={{ marginBottom: '24px', fontSize: isMobile ? '22px' : '32px' }}>New Arrivals</h2>
         <div style={{ 
           display: 'grid', 
@@ -79,7 +79,7 @@ export default function Home() {
             { id: 104, name: "New Arrival 04", price: "₹689", image: "/new_arrivals/arrival-4.jpeg" }
           ].map((item) => (
             <Link key={item.id} href={`/products/${item.id}`} style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
-               <div style={{ aspectRatio: '3/4', background: '#1a1a1a', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '2px solid #D4AF37' }}>
+               <div style={{ aspectRatio: '3/4', background: 'white', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', border: '1px solid var(--border-light)' }}>
                   <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                </div>
                <p className="text-body-sm" style={{ fontWeight: 600, marginBottom: '4px' }}>{item.name}</p>
@@ -95,8 +95,7 @@ export default function Home() {
           overflow: 'hidden', 
           background: '#000',
           aspectRatio: isMobile ? '9/16' : '16/9',
-          boxShadow: '0 20px 40px rgba(212, 175, 55, 0.15)',
-          border: '2px solid #D4AF37'
+          boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
         }}>
           <video 
             src="/new_arrivals/hero-video.mp4" 
@@ -110,7 +109,7 @@ export default function Home() {
       </section>
 
       {/* Value Propositions - Auto Scrolling Marquee */}
-      <section style={{ background: '#0f0f0f', padding: '60px 0', overflow: 'hidden' }}>
+      <section style={{ background: 'var(--surface-container)', padding: '60px 0', overflow: 'hidden' }}>
         <div className="marquee-container">
           {[...Array(3)].map((_, i) => (
             <div key={i} style={{ display: 'flex', gap: '20px' }}>
@@ -124,27 +123,27 @@ export default function Home() {
                 <div key={index} style={{ 
                   flex: '0 0 280px',
                   padding: '32px 24px',
-                  background: '#1a1a1a',
+                  background: 'white',
                   borderRadius: '20px',
                   textAlign: 'center',
-                  boxShadow: '0 8px 24px rgba(212, 175, 55, 0.08)',
-                  border: '2px solid #D4AF37'
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.04)',
+                  border: '1px solid var(--border-light)'
                 }}>
                   <div style={{ 
                     width: '56px', 
                     height: '56px', 
-                    background: '#252525', 
+                    background: 'var(--surface-container-low)', 
                     borderRadius: '16px', 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center',
                     margin: '0 auto 16px',
-                    color: '#D4AF37'
+                    color: 'var(--brand-gold)'
                   }}>
                     <span className="material-symbols-outlined" style={{ fontSize: '32px' }}>{value.icon}</span>
                   </div>
-                  <h4 className="text-h4" style={{ fontSize: '16px', marginBottom: '8px', color: '#e8e8e8' }}>{value.title}</h4>
-                  <p className="text-body-sm" style={{ opacity: 0.7, color: '#b0b0b0' }}>{value.desc}</p>
+                  <h4 className="text-h4" style={{ fontSize: '16px', marginBottom: '8px' }}>{value.title}</h4>
+                  <p className="text-body-sm" style={{ opacity: 0.6 }}>{value.desc}</p>
                 </div>
               ))}
             </div>
@@ -153,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* Wholesale Partnership */}
-      <section className="section" style={{ padding: '40px 0', background: '#0f0f0f' }}>
+      <section className="section" style={{ padding: '40px 0' }}>
         <div className="container">
           <div style={{ 
             textAlign: 'center', 
@@ -161,8 +160,8 @@ export default function Home() {
             margin: '0 auto',
             padding: '0 20px' 
           }}>
-            <h2 className="text-h2" style={{ marginBottom: '20px', fontSize: isMobile ? '24px' : '32px', color: '#e8e8e8' }}>Wholesale Partnership</h2>
-            <p className="text-body-reg" style={{ color: '#b0b0b0', marginBottom: '32px', lineHeight: '1.6' }}>
+            <h2 className="text-h2" style={{ marginBottom: '20px', fontSize: isMobile ? '24px' : '32px' }}>Wholesale Partnership</h2>
+            <p className="text-body-reg" style={{ color: 'var(--slate-gray)', marginBottom: '32px', lineHeight: '1.6' }}>
               Partner with CHAK to bring premium Tiruppur craftsmanship to your retail space. 
               We offer exclusive wholesale pricing and custom production services for bulk orders.
             </p>
@@ -173,7 +172,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none' }}
               >
-                <button className="btn-outline" style={{ borderRadius: '24px', padding: '12px 32px', minWidth: '200px', background: '#D4AF37', color: '#0f0f0f', border: 'none', fontWeight: 600, cursor: 'pointer' }}>Contact Wholesale Team</button>
+                <button className="btn-outline" style={{ borderRadius: '24px', padding: '12px 32px', minWidth: '200px' }}>Contact Wholesale Team</button>
               </a>
             </div>
           </div>

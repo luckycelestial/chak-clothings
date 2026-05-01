@@ -37,8 +37,8 @@ export default function Navigation() {
         left: 0, 
         right: 0, 
         zIndex: 1000, 
-        background: '#0f0f0f',
-        borderBottom: '1px solid #D4AF37',
+        background: 'white',
+        borderBottom: '1px solid rgba(0,0,0,0.05)',
         justifyContent: 'center', 
         boxShadow: 'none',
         transition: 'all 0.3s ease',
@@ -47,7 +47,7 @@ export default function Navigation() {
         <Link href="/" className="logo" style={{ 
           fontSize: '24px', 
           letterSpacing: '0.2em', 
-          color: '#D4AF37', 
+          color: 'black', 
           fontWeight: '700' 
         }}>
           CHAK CLOTHINGS
@@ -98,9 +98,9 @@ export default function Navigation() {
         }}>
           <div style={{
             position: 'relative',
-            background: '#1a1a1a',
+            background: 'white',
             borderRadius: '99px',
-            boxShadow: '0 10px 40px rgba(212, 175, 55, 0.1)',
+            boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
             border: '1px solid var(--gold-luxury)',
             overflow: 'hidden'
           }}>
@@ -118,16 +118,10 @@ export default function Navigation() {
                 background: 'transparent',
                 fontSize: '15px',
                 fontWeight: 500,
-                color: '#e8e8e8',
+                color: 'var(--charcoal-black)',
                 outline: 'none'
               }}
             />
-            <style>{`
-              input::placeholder {
-                color: #D4AF37 !important;
-                opacity: 0.8 !important;
-              }
-            `}</style>
             <button 
               onClick={() => setIsSearchOpen(false)}
               style={{
@@ -135,8 +129,8 @@ export default function Navigation() {
                 right: '12px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                background: '#D4AF37',
-                color: '#0f0f0f',
+                background: 'var(--action-blue)',
+                color: 'white',
                 border: 'none',
                 width: '36px',
                 height: '36px',

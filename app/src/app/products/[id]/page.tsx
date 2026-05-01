@@ -237,9 +237,9 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             aspectRatio: '3/4', 
             overflow: 'hidden', 
             borderRadius: '12px', 
-            background: '#1a1a1a', 
-            border: '2px solid #D4AF37', 
-            boxShadow: '0 10px 40px -10px rgba(212, 175, 55, 0.2)'
+            background: 'white', 
+            border: '1px solid var(--border-light)', 
+            boxShadow: '0 10px 40px -10px rgba(0, 0, 0, 0.08)'
           }}>
             <img 
               src={product.image} 
@@ -253,7 +253,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             gap: isMobile ? '16px' : '32px' 
           }}>
             {product.details.map((img, i) => (
-              <div key={i} style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '12px', background: '#1a1a1a', border: '2px solid #D4AF37' }}>
+              <div key={i} style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '12px', background: 'white', border: '1px solid var(--border-light)' }}>
                 <img src={img} alt={`Detail ${i}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             ))}
