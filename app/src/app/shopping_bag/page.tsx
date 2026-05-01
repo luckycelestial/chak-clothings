@@ -160,7 +160,7 @@ export default function ShoppingBag() {
               }}>
                 <span style={{ fontSize: '18px', fontWeight: 600, color: 'black' }}>Total</span>
                 <div style={{ textAlign: 'right' }}>
-                  <span style={{ fontSize: '32px', fontWeight: 700, color: 'var(--gold-luxury)' }}>₹{total.toLocaleString()}</span>
+                  <span style={{ fontSize: '32px', fontWeight: 700, color: 'black' }}>₹{total.toLocaleString()}</span>
                   <p style={{ fontSize: '10px', color: '#999999', margin: 0, textTransform: 'uppercase', letterSpacing: '0.1em' }}>All taxes included</p>
                 </div>
               </div>
