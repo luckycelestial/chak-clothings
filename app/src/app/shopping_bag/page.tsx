@@ -128,40 +128,40 @@ export default function ShoppingBag() {
             position: isMobile ? 'static' : 'sticky', 
             top: '120px', 
             padding: isMobile ? '24px' : '40px', 
-            background: 'var(--charcoal-black)', 
-            color: 'white', 
+            background: 'white', 
+            color: 'black', 
             borderRadius: '24px', 
-            border: '1px solid var(--gold-luxury)',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.15)'
+            border: '2px solid var(--gold-luxury)',
+            boxShadow: '0 20px 50px rgba(212,175,55,0.1)'
           }}>
             <h3 className="text-h3" style={{ color: 'var(--gold-luxury)', marginBottom: '32px', letterSpacing: '0.05em' }}>Order Summary</h3>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '40px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ color: '#A0A0A0', fontSize: '14px' }}>Subtotal</span>
-                <span style={{ fontWeight: 500 }}>₹{subtotal.toLocaleString()}</span>
+                <span style={{ color: '#666666', fontSize: '14px' }}>Subtotal</span>
+                <span style={{ fontWeight: 500, color: 'black' }}>₹{subtotal.toLocaleString()}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ color: '#A0A0A0', fontSize: '14px' }}>Shipping</span>
+                <span style={{ color: '#666666', fontSize: '14px' }}>Shipping</span>
                 <span style={{ color: 'var(--gold-luxury)', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '11px', fontWeight: 700 }}>Complimentary</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ color: '#A0A0A0', fontSize: '14px' }}>GST (12%)</span>
-                <span style={{ fontWeight: 500 }}>₹{gst.toLocaleString()}</span>
+                <span style={{ color: '#666666', fontSize: '14px' }}>GST (12%)</span>
+                <span style={{ fontWeight: 500, color: 'black' }}>₹{gst.toLocaleString()}</span>
               </div>
               
               <div style={{ 
                 paddingTop: '24px', 
                 marginTop: '12px', 
-                borderTop: '1px solid rgba(255,255,255,0.1)', 
+                borderTop: '1px solid var(--gold-luxury)', 
                 display: 'flex', 
                 justifyContent: 'space-between', 
                 alignItems: 'baseline' 
               }}>
-                <span style={{ fontSize: '18px', fontWeight: 600 }}>Total</span>
+                <span style={{ fontSize: '18px', fontWeight: 600, color: 'black' }}>Total</span>
                 <div style={{ textAlign: 'right' }}>
                   <span style={{ fontSize: '32px', fontWeight: 700, color: 'var(--gold-luxury)' }}>₹{total.toLocaleString()}</span>
-                  <p style={{ fontSize: '10px', color: '#A0A0A0', margin: 0, textTransform: 'uppercase', letterSpacing: '0.1em' }}>All taxes included</p>
+                  <p style={{ fontSize: '10px', color: '#999999', margin: 0, textTransform: 'uppercase', letterSpacing: '0.1em' }}>All taxes included</p>
                 </div>
               </div>
             </div>
@@ -174,12 +174,15 @@ export default function ShoppingBag() {
                 letterSpacing: '0.2em',
                 fontSize: '14px',
                 fontWeight: 700,
-                background: 'white',
+                background: 'var(--gold-luxury)',
                 color: 'black',
-                borderRadius: '12px'
+                borderRadius: '12px',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
               }}>Proceed to Checkout</button>
               
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', opacity: 0.7 }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', opacity: 0.7, color: '#666666' }}>
                 <span className="material-symbols-outlined" style={{ color: 'var(--gold-luxury)', fontSize: '20px' }}>shield_lock</span>
                 <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Secure encrypted payment</span>
               </div>
