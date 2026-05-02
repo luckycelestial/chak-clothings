@@ -231,7 +231,9 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
           gridColumn: isMobile ? 'span 1' : 'span 7', 
           display: 'flex', 
           flexDirection: 'column', 
-          gap: isMobile ? '16px' : '32px' 
+          gap: isMobile ? '16px' : '32px',
+          width: '100%',
+          overflow: 'hidden'
         }}>
           <div style={{ 
             aspectRatio: '3/4', 
@@ -239,7 +241,8 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             borderRadius: '12px', 
             background: 'white', 
             border: '1px solid var(--border-light)', 
-            boxShadow: '0 10px 40px -10px rgba(0, 0, 0, 0.08)'
+            boxShadow: '0 10px 40px -10px rgba(0, 0, 0, 0.08)',
+            width: '100%'
           }}>
             <img 
               src={product.image} 
@@ -250,7 +253,9 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: '1fr 1fr', 
-            gap: isMobile ? '16px' : '32px' 
+            gap: isMobile ? '16px' : '32px',
+            width: '100%',
+            overflow: 'hidden'
           }}>
             {product.details.map((img, i) => (
               <div key={i} style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '12px', background: 'white', border: '1px solid var(--border-light)' }}>
@@ -280,7 +285,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             {/* Color Selection */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <span className="text-label" style={{ fontWeight: 600 }}>Color: <span style={{ fontWeight: 400, color: 'var(--on-surface-variant)' }}>{selectedColor.name}</span></span>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(5, 1fr)' : 'repeat(6, 1fr)', gap: isMobile ? '10px' : '12px', width: '100%', overflow: 'hidden' }}>
                 {COLORS.map(color => (
                   <button 
                     key={color.name}
@@ -308,7 +313,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
                 <span className="text-label" style={{ fontWeight: 600 }}>Select Size</span>
                 <Link href="#" className="text-caption" style={{ color: 'var(--action-blue)', textDecoration: 'underline' }}>Size Guide</Link>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(4, 1fr)' : 'repeat(6, 1fr)', gap: isMobile ? '10px' : '12px', width: '100%', overflow: 'hidden' }}>
                 {SIZES.map(size => (
                   <button 
                     key={size} 
