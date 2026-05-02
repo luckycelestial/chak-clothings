@@ -285,24 +285,36 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             {/* Color Selection */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <span className="text-label" style={{ fontWeight: 600 }}>Color: <span style={{ fontWeight: 400, color: 'var(--on-surface-variant)' }}>{selectedColor.name}</span></span>
-              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(5, 1fr)' : 'repeat(6, 1fr)', gap: isMobile ? '10px' : '12px', width: '100%', overflow: 'hidden' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(5, 1fr)' : 'repeat(6, 1fr)', gap: isMobile ? '10px' : '12px', width: '100%', overflow: 'visible' }}>
                 {COLORS.map(color => (
-                  <button 
+                  <div
                     key={color.name}
-                    onClick={() => setSelectedColor(color)}
-                    style={{ 
+                    style={{
                       width: '100%',
                       aspectRatio: '1',
-                      borderRadius: '50%',
-                      background: color.hex,
-                      border: selectedColor.name === color.name ? '2px solid var(--action-blue)' : '1px solid rgba(0,0,0,0.1)',
-                      padding: '2px',
-                      cursor: 'pointer',
-                      transition: 'transform 0.2s',
-                      transform: selectedColor.name === color.name ? 'scale(1.1)' : 'scale(1)'
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: '50%'
                     }}
-                    title={color.name}
-                  />
+                  >
+                    <button 
+                      onClick={() => setSelectedColor(color)}
+                      style={{ 
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '50%',
+                        background: color.hex,
+                        border: selectedColor.name === color.name ? '3px solid var(--action-blue)' : '1px solid rgba(0,0,0,0.1)',
+                        padding: '0',
+                        cursor: 'pointer',
+                        transition: 'transform 0.2s',
+                        transform: selectedColor.name === color.name ? 'scale(1.1)' : 'scale(1)',
+                        boxSizing: 'border-box'
+                      }}
+                      title={color.name}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
